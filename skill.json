@@ -3,19 +3,27 @@
     "publishingInformation": {
       "locales": {
         "ja-JP": {
+          "name": "WordPress Meetup イベント検強索",
+          "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/903e/e83b7c715f3541dab70c581a88cb1d33/APP_ICON?versionId=8qUAU5v5r38optlC.lLtMYgJtHdI03Db&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20190520T142707Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20190520%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=8a893e399407776b837f64662e602848a36a1eaa169a9bf99c78596c6d19e462",
+          "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/f832/8cdad85e219e4037aea9f36ab178cefa/APP_ICON_LARGE?versionId=V707ukAdiPrr8_qcfmeqPexke2zmJ4Kx&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20190520T142707Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20190520%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=ba004353a4eb5e1d6f32a0d75d1cf32b8c4581bc87ec233ca92e6b4afd362c93",
           "summary": "Sample Short Description",
+          "description": "Sample Full Description",
           "examplePhrases": [
-            "Alexa open hello world",
-            "hello",
-            "help"
+            "アレクサ、ワードプレスイベント検索を開いて",
+            "ワードプレスイベント検索で東京のイベント",
+            "大阪のイベントを探して"
           ],
-          "name": "WordPress Meetup イベントファインダー",
-          "description": "Sample Full Description"
+          "keywords": [
+            "WordPress",
+            "WordPress",
+            "Meetup",
+            "ワードプレス"
+          ]
         }
       },
       "isAvailableWorldwide": true,
       "testingInstructions": "Sample Testing Instructions.",
-      "category": "KNOWLEDGE_AND_TRIVIA",
+      "category": "EVENT_FINDERS",
       "distributionCountries": []
     },
     "apis": {
@@ -23,8 +31,23 @@
         "endpoint": {
           "sourceDir": "lambda/custom",
           "uri": "ask-custom-wp-meetup-finder-default"
-        }
+        },
+        "interfaces": [
+          {
+            "type": "ALEXA_PRESENTATION_APL"
+          }
+        ]
       }
+    },
+    "privacyAndCompliance": {
+      "locales": {
+        "ja-JP": {}
+      },
+      "allowsPurchases": false,
+      "usesPersonalInfo": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false
     },
     "manifestVersion": "1.0"
   }
