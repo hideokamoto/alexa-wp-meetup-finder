@@ -29,3 +29,13 @@ export type TReqsponseBody = {
   location: TRequestLocation,
   events: TEvents
 }
+export interface TListTemplateItem {
+  listItemIdentifier: string
+  ordinalNumber: number
+  textContent: {
+      primaryText: string
+      secondaryText: string
+      tertiaryText?: string
+  },
+  token: string
+}

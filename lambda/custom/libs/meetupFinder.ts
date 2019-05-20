@@ -43,7 +43,7 @@ export default class MeetupFinder {
       return data as TReqsponseBody
     } catch (e) {
       console.log('Fetch Error: %j', e)
-      return []
+      return null
     }
   }
 }
