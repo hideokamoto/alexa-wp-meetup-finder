@@ -1,7 +1,6 @@
 import * as Alexa from 'ask-sdk-core';
 import "tslib";
 import {
-  isHelpIntent,
   isStopIntent,
   isCancelIntent,
   isNoIntent,
@@ -14,47 +13,25 @@ import {
 import RequestHandler = Alexa.RequestHandler
 import SearchByRegionIntentHandler from './handlers/SearchMeetupHandler'
 import LaunchRequestHandler from './handlers/LaunchRequestHandler'
-
-const HelloWorldIntentHandler: RequestHandler = {
-  canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'HelloWorldIntent';
-  },
-  handle(handlerInput) {
-    const speechText = 'Hello World!';
-
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .withSimpleCard('Hello World', speechText)
-      .getResponse();
-  },
-};
-
-const HelpIntentHandler: RequestHandler = {
-  canHandle(handlerInput) {
-    return isHelpIntent(handlerInput)
-  },
-  handle(handlerInput) {
-    const speechText = 'You can say hello to me!';
-
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .reprompt(speechText)
-      .withSimpleCard('Hello World', speechText)
-      .getResponse();
-  },
-};
+import HelpIntentHandler from './handlers/HelpHandler'
+import {
+  getRandomSpeechconTexts
+} from './libs/helpers'
 
 const CancelAndStopIntentHandler: RequestHandler = {
   canHandle(handlerInput) {
     return isCancelIntent(handlerInput) || isNoIntent(handlerInput) || isStopIntent(handlerInput)
   },
   handle(handlerInput) {
-    const speechText = 'Goodbye!';
+    const speechText = getRandomSpeechconTexts([
+      'またね',
+      'ごきげんよう',
+      'さようなら',
+      'じゃね'
+    ]);
 
     return handlerInput.responseBuilder
       .speak(speechText)
-      .withSimpleCard('Hello World', speechText)
       .getResponse();
   },
 };
@@ -67,8 +44,8 @@ const ErrorHandler: Alexa.ErrorHandler = {
     console.log(`Error handled: ${error.message}`);
 
     return handlerInput.responseBuilder
-      .speak('Sorry, I can\'t understand the command. Please say again.')
-      .reprompt('Sorry, I can\'t understand the command. Please say again.')
+      .speak('すみません。ちょっとトラブルが起きたみたいです。もう一度言っていただけますか？')
+      .reprompt('ちょっと聞き取りに失敗してしまいました・・・もう一度話しかけてくれると嬉しいです。')
       .getResponse();
   },
 };
@@ -78,7 +55,6 @@ const skillBuilder = Alexa.SkillBuilders.custom();
 export const handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
-    HelloWorldIntentHandler,
     SearchByRegionIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,

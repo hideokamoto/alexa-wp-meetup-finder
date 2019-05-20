@@ -6,11 +6,11 @@
       "merge": {},
       "resources": {
         "manifest": {
-          "eTag": "9fe0b0c5ff76b53cdb594f3acce99079"
+          "eTag": "c76297888f566803f1df0439b19ea303"
         },
         "interactionModel": {
           "ja-JP": {
-            "eTag": "a312a298107e0ba95231690cbc755379"
+            "eTag": "c34f99840c25f92eb1596a36caa1aab2"
           }
         },
         "lambda": [
@@ -23,7 +23,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-custom-wp-meetup-finder-default",
             "handler": "index.handler",
-            "revisionId": "e18b3758-4322-4442-b3f3-a9b8044deb9a",
+            "revisionId": "9ebe7771-d4d7-43d9-b2fa-c775c7f21af6",
             "runtime": "nodejs8.10"
           }
         ]

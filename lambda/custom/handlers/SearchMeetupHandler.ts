@@ -35,7 +35,8 @@ export default {
     }
     const data = await finder.setLocation(region).get()
     if (!data) {
-      return responseBuilder.speak('データの取得に失敗しました。')
+      return responseBuilder.speak('データの取得に失敗しました。もう一度探したい地域名をお聞かせください。')
+        .reprompt('他の地域も調べますか？終了する場合は、ストップと話しかけてください。')
         .getResponse()
     }
     builder.putSpeechParagraph(`${data.location.description}の周辺で開催予定のイベントは、 次の${data.events.length}件です。`)
@@ -60,9 +61,12 @@ export default {
         .setSecondaryText(event.title)
       directive.putListItem(Item.getItem())
     })
-    const { speechText } = builder.getResponse()
+    builder
+      .putSpeechParagraph('他の地域も調べますか？')
+      .putRepromptText('他の地域も調べますか？終了する場合は、ストップと話しかけてください。')
+    const { speechText, repromptText } = builder.getResponse()
     responseBuilder.speak(speechText)
-      .reprompt('他の地域も調べますか？')
+      .reprompt(repromptText)
     const interfaces = getSupportedInterfaces(handlerInput)
     if (interfaces["Alexa.Presentation.APL"]) {
       responseBuilder.addDirective(directive.getDirective())

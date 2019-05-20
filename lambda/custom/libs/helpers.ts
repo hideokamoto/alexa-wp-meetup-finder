@@ -1,3 +1,4 @@
+import { getRandomMessage } from 'ask-utils'
 import { TEvent } from '../model'
 export const getTimezoneByLocale = (locale: string): string => {
   switch(locale) {
@@ -15,3 +16,7 @@ export const getLocation = (event: TEvent): string => {
   const place = event.location.location.split(',')[0]
   return place.replace(/Tōkyō-to/, '東京都')
 }
+
+export const getRandomSpeechconTexts = (texts: string[]) => {
+  return `<say-as interpret-as="interjection">${getRandomMessage(texts)}</say-as>`
+ }
