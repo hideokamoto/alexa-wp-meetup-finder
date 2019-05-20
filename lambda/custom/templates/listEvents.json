@@ -177,9 +177,9 @@
                               {
                                   "type": "VerticalListItem",
                                   "image": "${data.image.sources[0].url}",
-                                  "primaryText": "${data.textContent.primaryText.text}",
-                                  "secondaryText": "${data.textContent.secondaryText.text}",
-                                  "tertiaryText": "${data.textContent.tertiaryText.text}"
+                                  "primaryText": "${data.textContent.primaryText}",
+                                  "secondaryText": "${data.textContent.secondaryText}",
+                                  "tertiaryText": "${data.textContent.tertiaryText}"
                               }
                           ]
                       }

@@ -38,7 +38,12 @@ export default class MeetupFinder {
   }
   async get() {
     const url = this.getUrl()
-    const { data } = await axios.get(url)
-    return data as TReqsponseBody
+    try {
+      const { data } = await axios.get(url)
+      return data as TReqsponseBody
+    } catch (e) {
+      console.log('Fetch Error: %j', e)
+      return []
+    }
   }
 }

@@ -22,6 +22,7 @@ fi
 
 install_dependencies() {
     npm install --prefix "$1" >/dev/null 2>&1 
+    npm run build --prefix "$1"
     return $?
 }
 

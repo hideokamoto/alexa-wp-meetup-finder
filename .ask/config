@@ -1,9 +1,33 @@
 {
   "deploy_settings": {
     "default": {
-      "skill_id": "",
+      "skill_id": "amzn1.ask.skill.614a168f-0a76-40bb-a6e6-9f41ab80b29c",
       "was_cloned": false,
-      "merge": {}
+      "merge": {},
+      "resources": {
+        "manifest": {
+          "eTag": "9fe0b0c5ff76b53cdb594f3acce99079"
+        },
+        "interactionModel": {
+          "ja-JP": {
+            "eTag": "a312a298107e0ba95231690cbc755379"
+          }
+        },
+        "lambda": [
+          {
+            "alexaUsage": [
+              "custom/default"
+            ],
+            "arn": "arn:aws:lambda:us-east-1:372284591230:function:ask-custom-wp-meetup-finder-default",
+            "awsRegion": "us-east-1",
+            "codeUri": "lambda/custom",
+            "functionName": "ask-custom-wp-meetup-finder-default",
+            "handler": "index.handler",
+            "revisionId": "eca834f7-6fd0-4b40-950e-97567873bdc5",
+            "runtime": "nodejs8.10"
+          }
+        ]
+      }
     }
   }
 }

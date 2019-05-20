@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "hello world",
+      "invocationName": "ワードプレスイベントファインダー",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -16,10 +16,15 @@
           "samples": []
         },
         {
-          "name": "HelloWorldIntent",
+          "name": "SearchByRegionIntent",
           "samples": [
-            "hello"
-          ]
+            "{region} のイベントを教えて",
+            "{region} のイベント"
+          ],
+          "slots": [{
+            "name": "region",
+            "type": "AMAZON.Region"
+          }]
         }
       ]
     }
