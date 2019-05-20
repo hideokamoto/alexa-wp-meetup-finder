@@ -9,7 +9,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ask-utils/handlers": "^1.0.0",
     "ask-sdk-core": "^2.0.0",
-    "ask-sdk-model": "^1.0.0"
+    "ask-sdk-model": "^1.0.0",
+    "ask-utils": "^1.6.0",
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.2",
+    "tslib": "^1.9.3",
+    "typescript": "^3.4.5"
   }
 }
