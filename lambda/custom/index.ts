@@ -1,7 +1,6 @@
-/* eslint-disable  func-names */
-/* eslint-disable  no-console */
-
-const Alexa = require('ask-sdk-core');
+import * as Alexa from 'ask-sdk-core';
+import "tslib";
+import { Response } from 'ask-sdk-model'
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
