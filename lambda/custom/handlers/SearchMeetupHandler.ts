@@ -28,6 +28,9 @@ export default {
     const locale = getLocale(handlerInput)
     if (locale) finder.setLocale(locale)
     const region = getSlotValue(handlerInput, 'region')
+    if (!region) {
+      throw new Error('region is not defined.')
+    }
     const timezone = getTimezoneByLocale(locale)
     if (timezone) {
       finder.setTimezone(timezone)
@@ -39,6 +42,11 @@ export default {
         .reprompt('他の地域も調べますか？終了する場合は、ストップと話しかけてください。')
         .getResponse()
     }
+    if (data.events.length < 1) {
+      return responseBuilder.speak('近くで開催されるイベントが今の所ない様子です・・・。他の地域も調べますか？')
+        .reprompt('他の地域も調べますか？終了する場合は、ストップと話しかけてください。')
+        .getResponse()
+    }
     builder.putSpeechParagraph(`${data.location.description}の周辺で開催予定のイベントは、 次の${data.events.length}件です。`)
     // APL系処理のセットアップ
     const metadataBuilder = ListTemplateMetadataFactory.init()
@@ -47,7 +55,7 @@ export default {
 
     data.events.forEach((event, i) => {
       const place = getLocation(event)
-      const date = moment(event.date).format('YYYY/MM/DD HH時')
+      const date = moment(event.date).format('YYYY/MM/DD H時')
       const p = [
         `${place}で`,
         `${date}に`,
