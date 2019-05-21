@@ -33,6 +33,7 @@ const CancelAndStopIntentHandler: RequestHandler = {
 
     return handlerInput.responseBuilder
       .speak(speechText)
+      .withShouldEndSession(true)
       .getResponse();
   },
 };
