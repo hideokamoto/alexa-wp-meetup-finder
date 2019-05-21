@@ -23,8 +23,8 @@ export default class ListTemplateMetadataFactory {
               }
           ]
       },
-      title: "Calories in 1 Serving of Cheese",
-      logoUrl: "https://d2o906d8ln7ui1.cloudfront.net/images/cheeseskillicon.png"
+      title: "Display Title here",
+      logoUrl: ""
   }
     return {
       setTitle(title: string) {
