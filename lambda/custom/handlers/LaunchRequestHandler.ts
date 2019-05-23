@@ -12,7 +12,7 @@ export default  {
   handle(handlerInput: HandlerInput): Response {
     const builder = ResponseFactory.init()
     builder.putSpeechParagraph('ワードプレスイベント検索へようこそ。')
-      .putSpeechParagraph('このスキルでは、ワードプレスミートアップのイベントを検索できます。')
+      .putSpeechParagraph('このスキルは、ワードプレスミートアップのイベントを検索できる非公式スキルです。')
       .putSpeechParagraph('東京のイベントを教えて。のように話しかけることで、ミートアップの開催予定を調べます。')
       .putSpeechParagraph('どの地域のイベントについて知りたいですか？')
       .putRepromptText('どの地域のイベントについて知りたいですか？')

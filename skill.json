@@ -3,7 +3,7 @@
     "publishingInformation": {
       "locales": {
         "ja-JP": {
-          "name": "WordPress Meetup イベント検索",
+          "name": "WordPress Meetup イベント検索 [非公式]",
           "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/903e/e83b7c715f3541dab70c581a88cb1d33/APP_ICON?versionId=8qUAU5v5r38optlC.lLtMYgJtHdI03Db&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20190520T142707Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20190520%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=8a893e399407776b837f64662e602848a36a1eaa169a9bf99c78596c6d19e462",
           "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/f832/8cdad85e219e4037aea9f36ab178cefa/APP_ICON_LARGE?versionId=V707ukAdiPrr8_qcfmeqPexke2zmJ4Kx&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20190520T142707Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJFEYRBGIHK2BBYKA%2F20190520%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=ba004353a4eb5e1d6f32a0d75d1cf32b8c4581bc87ec233ca92e6b4afd362c93",
           "summary": "WordPress Meetupのイベント開催情報を検索する非公式スキルです。地名から周辺のイベント開催予定を調べることができます。",

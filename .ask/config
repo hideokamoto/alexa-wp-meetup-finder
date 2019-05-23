@@ -6,7 +6,7 @@
       "merge": {},
       "resources": {
         "manifest": {
-          "eTag": "1f8e44522b44f794e2afd1d13efb1aa9"
+          "eTag": "3cf2a88a9358cd06d6f001ff95505dbd"
         },
         "interactionModel": {
           "ja-JP": {
@@ -23,7 +23,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-custom-wp-meetup-finder-default",
             "handler": "index.handler",
-            "revisionId": "0475e666-cd41-4f30-a73a-d13a5ef1ba91",
+            "revisionId": "fa5324d6-d987-46cb-a30c-a1c4984293d5",
             "runtime": "nodejs8.10"
           }
         ]

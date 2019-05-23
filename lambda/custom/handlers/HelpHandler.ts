@@ -13,6 +13,7 @@ export default  {
     const builder = ResponseFactory.init()
     builder.putSpeechParagraph('このスキルでは、ワードプレスミートアップのイベントを検索できます。')
       .putSpeechParagraph('東京のイベントを教えて。のように話しかけることで、ミートアップの開催予定を調べます。')
+      .putSpeechParagraph('なお、このスキルは、ワードプレス公式とは関係のない非公式スキルですので、ご了承ください。')
       .putSpeechParagraph('どの地域のイベントについて知りたいですか？')
       .putRepromptText('どの地域のイベントについて知りたいですか？')
     const { speechText, repromptText } = builder.getResponse()
