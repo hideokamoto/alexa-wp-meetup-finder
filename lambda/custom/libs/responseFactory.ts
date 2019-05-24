@@ -1,3 +1,4 @@
+import { escapeXmlCharacters } from 'ask-sdk-core'
 export default class ResponseFactory {
   public static init() {
     const response = {
@@ -8,15 +9,15 @@ export default class ResponseFactory {
     }
     return {
       putSpeechParagraph(text: string) {
-        response.speechTexts.push(`<p>${text}</p>`)
+        response.speechTexts.push(`<p>${escapeXmlCharacters(text)}</p>`)
         return this
       },
       putSpeechText(text: string) {
-        response.speechTexts.push(text)
+        response.speechTexts.push(escapeXmlCharacters(text))
         return this
       },
       putRepromptText(text: string) {
-        response.repromptTexts.push(text)
+        response.repromptTexts.push(escapeXmlCharacters(text))
         return this
       },
       putCardTitle(title: string) {

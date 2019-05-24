@@ -56,7 +56,7 @@ export default {
     // APL系処理のセットアップ
     const metadataBuilder = ListTemplateMetadataFactory.init()
     const title = `${data.location.description}周辺のイベント情報`
-    metadataBuilder.setTitle(title)
+    metadataBuilder.setTitle(title).setShortTitle(`${data.location.description}周辺`)
     builder.putCardTitle(title)
     const directive = new List(metadataBuilder)
 

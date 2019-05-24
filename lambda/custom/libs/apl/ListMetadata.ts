@@ -24,11 +24,16 @@ export default class ListTemplateMetadataFactory {
           ]
       },
       title: "Display Title here",
+      title_short: "For Echo Spot",
       logoUrl: ""
   }
     return {
       setTitle(title: string) {
         metadata.title = escapeXmlCharacters(title)
+        return this
+      },
+      setShortTitle(title: string) {
+        metadata.title_short = escapeXmlCharacters(title)
         return this
       },
       setLogoURL(url: string) {

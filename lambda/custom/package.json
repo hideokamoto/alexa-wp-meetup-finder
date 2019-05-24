@@ -10,7 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@ask-utils/handlers": "^1.0.0",
+    "@ask-utils/handlers": "^1.0.2",
     "ask-sdk-core": "^2.0.0",
     "ask-sdk-model": "^1.0.0",
     "ask-utils": "^1.6.0",
