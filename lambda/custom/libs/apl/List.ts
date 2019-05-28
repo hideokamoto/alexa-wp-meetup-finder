@@ -18,8 +18,8 @@ export default class List {
       token: 'token',
       document: require(this.documentPath),
       datasources: {
-        listTemplate1Metadata: this.metadataBuilder.getMetadata(),
-        listTemplate1ListData: {
+        EventListTemplateMetadata: this.metadataBuilder.getMetadata(),
+        EventListTemplateListData: {
           type: "list",
           listId: "lt1Sample",
           totalNumberOfItems: this.listItem.length,

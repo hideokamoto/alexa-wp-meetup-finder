@@ -141,7 +141,7 @@
       }
     },
     "layouts": {
-      "ListTemplate1": {
+      "EventListTemplate": {
         "parameters": [
           "backgroundImage",
           "title",
@@ -293,12 +293,12 @@
       ],
       "item": [
         {
-          "type": "ListTemplate1",
-          "backgroundImage": "${payload.listTemplate1Metadata.backgroundImage.sources[0].url}",
-          "title": "${payload.listTemplate1Metadata.title}",
-          "title_short": "${payload.listTemplate1Metadata.title_short}",
-          "logo": "${payload.listTemplate1Metadata.logoUrl}",
-          "listData": "${payload.listTemplate1ListData.listPage.listItems}"
+          "type": "EventListTemplate",
+          "backgroundImage": "${payload.EventListTemplateMetadata.backgroundImage.sources[0].url}",
+          "title": "${payload.EventListTemplateMetadata.title}",
+          "title_short": "${payload.EventListTemplateMetadata.title_short}",
+          "logo": "${payload.EventListTemplateMetadata.logoUrl}",
+          "listData": "${payload.EventListTemplateListData.listPage.listItems}"
         }
       ]
     }
