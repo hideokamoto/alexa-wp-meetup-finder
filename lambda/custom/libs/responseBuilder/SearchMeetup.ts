@@ -19,16 +19,16 @@ export default class ContentBuilder {
     this.shouldAskSaveRegion = true
     return this
   }
-  getNextActionText(): string {
+  getNextActionTexts(): string[] {
     if (this.shouldAskSaveRegion) {
       return [
         '今回の検索に使用した地名を保存することができます。',
         '保存すると、次回から地名を言わずにイベントを検索することができます。',
         'もちろん、地名を言うことで他の地域を検索することもできます。',
         '保存しますか？'
-      ].join(' ')
+      ]
     }
-    return '他の地域も調べますか？終了する場合は、ストップと話しかけてください。'
+    return ['他の地域も調べますか？終了する場合は、ストップと話しかけてください。']
   }
   getRepromptText(): string {
     if (this.shouldAskSaveRegion) {
@@ -95,9 +95,10 @@ export default class ContentBuilder {
           .getItem()
       )
     })
+    const nextActionTexts = this.getNextActionTexts()
+    nextActionTexts.forEach(text => this.builder.putSpeechParagraph(text))
     this.builder
-      .putSpeechParagraph(this.getNextActionText())
-      .putRepromptText(`${this.getNextActionText()}終了する場合は、ストップと話しかけてください。`)
+      .putRepromptText(this.getRepromptText())
       .setDirective(directive.getDirective())
     return this.builder.getResponse()
   }
