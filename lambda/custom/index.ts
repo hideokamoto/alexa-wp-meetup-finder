@@ -1,20 +1,28 @@
 import * as Alexa from 'ask-sdk-core';
 import "tslib";
+import {S3PersistenceAdapter, ObjectKeyGenerators} from 'ask-sdk-s3-persistence-adapter'
 import {
   isStopIntent,
   isCancelIntent,
   isNoIntent,
-  isYesIntent,
   RequestLogger,
   ResponseLogger,
+  updateSessionAttributes,
 } from 'ask-utils'
 import {
   SessionEndedRequestHandler
 } from '@ask-utils/handlers'
 import RequestHandler = Alexa.RequestHandler
 import SearchByRegionIntentHandler from './handlers/SearchMeetupHandler'
+import SearchByDeviceAddressIntentHandler from './handlers/SearchMeetupByDevicecAddressHandler'
+import RequestDeviceAddressIntentHandler from './handlers/RequestDevicecAddressHandler'
 import LaunchRequestHandler from './handlers/LaunchRequestHandler'
 import HelpIntentHandler from './handlers/HelpHandler'
+import SaveTheRegionIntentHandler from './handlers/SaveTheRegion'
+import {
+  YesIntentHandler,
+  YesSaveTheTownHandler
+} from './handlers/YesIntentHandlers/index'
 import {
   getRandomSpeechconTexts
 } from './libs/helpers'
@@ -38,18 +46,6 @@ const CancelAndStopIntentHandler: RequestHandler = {
   },
 };
 
-const YesIntentHandler: RequestHandler = {
-  canHandle(handlerInput) {
-    return isYesIntent(handlerInput)
-  },
-  handle(handlerInput) {
-    return handlerInput.responseBuilder
-      .speak('調べたい地域の名前を教えてください。東京や京都のように都道府県名で言ってもらえると、見つけやすくて助かります。')
-      .reprompt('調べたい地域はどこですか？なければ、「終了」と言ってください。')
-      .getResponse()
-  }
-}
-
 const ErrorHandler: Alexa.ErrorHandler = {
   canHandle() {
     return true;
@@ -70,13 +66,44 @@ export const handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
     SearchByRegionIntentHandler,
+    SearchByDeviceAddressIntentHandler,
+    RequestDeviceAddressIntentHandler,
     HelpIntentHandler,
+    SaveTheRegionIntentHandler,
+    YesSaveTheTownHandler,
     YesIntentHandler,
     CancelAndStopIntentHandler,
-    SessionEndedRequestHandler
+    SessionEndedRequestHandler,
+    {
+      canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      },
+      handle(handlerInput) {
+        console.log(handlerInput.requestEnvelope)
+        return ErrorHandler.handle(handlerInput, new Error('unhandled'))
+      }
+    }
   )
-  .addRequestInterceptors(RequestLogger)
+  .addRequestInterceptors(
+    {
+      process(handlerInput) {
+        if (!Alexa.isNewSession(handlerInput.requestEnvelope)) return
+        const canCallAPI = !!(Alexa.getApiAccessToken(handlerInput.requestEnvelope))
+        updateSessionAttributes(handlerInput, {
+          canCallAPI
+        })
+      }
+    },
+    RequestLogger
+  )
   .addResponseInterceptors(ResponseLogger)
   .addErrorHandlers(ErrorHandler)
   .withApiClient(new Alexa.DefaultApiClient())
+  .withPersistenceAdapter(
+      new S3PersistenceAdapter({
+          bucketName: 'wp-kyoto-ask-db',
+          pathPrefix: 'wp-meetup-finder',
+          objectKeyGenerator: ObjectKeyGenerators.deviceId
+      })
+  )
   .lambda();

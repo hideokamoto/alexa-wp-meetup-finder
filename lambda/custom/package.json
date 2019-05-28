@@ -13,6 +13,7 @@
     "@ask-utils/handlers": "^1.0.2",
     "ask-sdk-core": "^2.0.0",
     "ask-sdk-model": "^1.0.0",
+    "ask-sdk-s3-persistence-adapter": "^2.5.2",
     "ask-utils": "^1.6.0",
     "axios": "^0.18.0",
     "meetup-api": "^1.4.38",
