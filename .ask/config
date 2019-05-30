@@ -23,7 +23,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-custom-wp-meetup-finder-default",
             "handler": "index.handler",
-            "revisionId": "7e5948cb-b4ab-4678-b4d6-8190cd6ea37f",
+            "revisionId": "853abb37-db67-4a9c-bb9e-c3217875913a",
             "runtime": "nodejs8.10"
           }
         ]

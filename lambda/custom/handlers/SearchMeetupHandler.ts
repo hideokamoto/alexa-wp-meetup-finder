@@ -16,6 +16,17 @@ import {
   SAVE_THE_REGION_NAME
 } from '../state'
 
+const trimRegionName = (region?: string): string | null => {
+  if (!region) return null
+  if (/^東京都/.test(region)) return '東京都'
+  if (/^大阪府/.test(region)) return '大阪府'
+  if (/^京都府/.test(region)) return '京都府'
+  if (/^北海道/.test(region)) return '北海道'
+  if (!/県/.test(region)) return region
+  const t = region.split('県')
+  return `${t[0]}県`
+}
+
 export default {
   canHandle(handlerInput: HandlerInput): boolean {
     return isMatchedIntent(handlerInput, 'SearchByRegionIntent')
@@ -31,7 +42,7 @@ export default {
     // イベント検索
     const finder = new MeetupFinder()
     if (locale) finder.setLocale(locale)
-    const region = presentedRegion || getSlotValue(handlerInput, 'region')
+    const region = trimRegionName(presentedRegion || getSlotValue(handlerInput, 'region'))
     if (!region) {
       throw new Error('region is not defined.')
     }
