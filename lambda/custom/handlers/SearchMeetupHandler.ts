@@ -17,14 +17,15 @@ import {
 } from '../state'
 
 const trimRegionName = (region?: string): string | null => {
+  console.log('trimRegionName: %j', region)
   if (!region) return null
-  if (/^東京都/.test(region)) return '東京都'
-  if (/^大阪府/.test(region)) return '大阪府'
-  if (/^京都府/.test(region)) return '京都府'
+  if (/^東京/.test(region)) return '東京'
+  if (/^大阪/.test(region)) return '大阪'
+  if (/^京都/.test(region)) return '京都'
   if (/^北海道/.test(region)) return '北海道'
   if (!/県/.test(region)) return region
   const t = region.split('県')
-  return `${t[0]}県`
+  return `${t[0]}`
 }
 
 export default {

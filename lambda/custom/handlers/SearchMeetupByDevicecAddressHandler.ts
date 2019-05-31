@@ -22,7 +22,12 @@ const geteviceAddress = async (requestEnvelope: RequestEnvelope, serviceClientFa
   try {
     const client = serviceClientFactory.getDeviceAddressServiceClient()
     const address = await client.getFullAddress(getDeviceId(requestEnvelope))
+    console.log('geteviceAddress :%j', {
+      city: address.city,
+      stateOrRegion: address.stateOrRegion
+    })
     const region = getSearchQuery(address)
+    console.log('getSearchQuery :%j', address)
     return region
   } catch (e) {
     console.log(e)

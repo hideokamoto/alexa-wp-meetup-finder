@@ -83,9 +83,9 @@ export default class ContentBuilder {
       this.builder.putSpeechParagraph(p)
       // Card Content
       this.builder.putCardContent(event.title)
-        .putCardContent(event.meetup)
-        .putCardContent(date + ' ~ ')
-        .putCardContent('URL: ' + event.meetup_url)
+      if (event.meetup) this.builder.putCardContent(event.meetup)
+      if (date) this.builder.putCardContent(date + ' ~ ')
+      if (event.meetup_url) this.builder.putCardContent('URL: ' + event.meetup_url)
       // APL Content
       const number = i + 1
       const Item = new ListItem(number, `event-${number}`)

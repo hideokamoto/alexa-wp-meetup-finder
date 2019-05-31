@@ -34,6 +34,7 @@ export default class MeetupFinder {
   }
   getUrl() {
     const query = this.getSearchQuery()
+    console.log('SearchQuery: %j', query)
     return encodeURI([this.url, query].join('/'))
   }
   async get() {
