@@ -21,7 +21,8 @@ import HelpIntentHandler from './handlers/HelpHandler'
 import SaveTheRegionIntentHandler from './handlers/SaveTheRegion'
 import {
   YesIntentHandler,
-  YesSaveTheTownHandler
+  YesSaveTheTownHandler,
+  YesSearchByPersistentRegionHandler
 } from './handlers/YesIntentHandlers/index'
 import {
   getRandomSpeechconTexts
@@ -71,6 +72,7 @@ export const handler = skillBuilder
     HelpIntentHandler,
     SaveTheRegionIntentHandler,
     YesSaveTheTownHandler,
+    YesSearchByPersistentRegionHandler,
     YesIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
