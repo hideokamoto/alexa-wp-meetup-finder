@@ -12,7 +12,8 @@ import {
 
 const getSearchQuery = (address: services.deviceAddress.Address): string => {
   if (!address) return ''
-  if (address.city) return address.city
+  // 市区町村群では検索に引っかかりにくい
+  // if (address.city) return address.city
   if (address.stateOrRegion) return address.stateOrRegion
   return ''
 }
@@ -27,7 +28,7 @@ const geteviceAddress = async (requestEnvelope: RequestEnvelope, serviceClientFa
       stateOrRegion: address.stateOrRegion
     })
     const region = getSearchQuery(address)
-    console.log('getSearchQuery :%j', address)
+    console.log('getSearchQuery :%j', region)
     return region
   } catch (e) {
     console.log(e)
@@ -69,7 +70,7 @@ export default {
     const region = await geteviceAddress(requestEnvelope, serviceClientFactory)
     // アドレスが登録されていない
     if (!region) {
-      return responseBuilder.speak(`地名がデバイスに登録されていませんでした。アレクサアプリからデバイスの所在地の都道府県または市町村を設定してください。${fallbackText}`)
+      return responseBuilder.speak(`地名がデバイスに登録されていませんでした。アレクサアプリからデバイスの所在地の都道府県を設定してください。${fallbackText}`)
         .reprompt(`${fallbackText}`)
         .getResponse()
     }

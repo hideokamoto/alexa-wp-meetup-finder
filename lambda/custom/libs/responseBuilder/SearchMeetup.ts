@@ -54,10 +54,11 @@ export default class ContentBuilder {
   }
   getNoEventResponse(region?: string): IResponseContent {
     const preText = region ? `${region}の`: ''
-    const builder = this.builder.putSpeechParagraph(`${preText}近くで開催されるイベントが今の所ない様子です・・・。他の地域も調べますか？`)
+    const builder = this.builder.putSpeechParagraph(`${preText}近くで開催されるイベントが今の所ない様子です・・・。`)
       .putRepromptText('他の地域も調べますか？終了する場合は、ストップと話しかけてください。')
+    if (/[市区町村群]/.test(region)) builder.putSpeechParagraph('都道府県名で検索すると、イベントを見つけやすいかもしれません。')
     if (region) builder.putCardTitle(`${region}のイベント`).putCardContent(`${region}で今後開催予定のWordPress Meetupは今の所ありません。`)
-    return builder.getResponse()
+    return builder.putSpeechParagraph('他の地域を探しますか？').getResponse()
   }
   getLocale(): string {
     return this.locale

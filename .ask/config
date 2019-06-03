@@ -10,7 +10,7 @@
         },
         "interactionModel": {
           "ja-JP": {
-            "eTag": "c0c378434ccd86ea97f7ea044c122d97"
+            "eTag": "abfd396f2c909764ee53659c6d5383eb"
           }
         },
         "lambda": [
@@ -23,7 +23,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-custom-wp-meetup-finder-default",
             "handler": "index.handler",
-            "revisionId": "c8672270-5eff-438e-b591-b66d24b799f0",
+            "revisionId": "249fe4dc-e183-4863-a57a-c0179aab0084",
             "runtime": "nodejs8.10"
           }
         ]
