@@ -9,6 +9,7 @@ export interface TEvent {
   title: string
   meetup: string
   meetup_url: string
+  url: string
   date: string
   location: TEventLocation
 }
@@ -38,4 +39,18 @@ export interface TListTemplateItem {
       tertiaryText?: string
   },
   token: string
+}
+export type TEventDetail = {
+  title: string
+  start: number
+  end?: number
+  description: string
+  venue: {
+    name: string
+    address: string
+    capacity?: number
+    lat?: number
+    long?: number
+  }
+  how_to_find_us?: string
 }

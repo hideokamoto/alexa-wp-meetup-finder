@@ -17,7 +17,6 @@ import {
 } from '../state'
 
 const trimRegionName = (region?: string): string | null => {
-  console.log('trimRegionName: %j', region)
   if (!region) return null
   if (/^東京/.test(region)) return '東京'
   if (/^大阪/.test(region)) return '大阪'
@@ -78,6 +77,9 @@ export default {
       if (noEventResponse.cardTitle) noEvent.withSimpleCard(noEventResponse.cardTitle, noEventResponse.cardText)
       return noEvent.getResponse()
     }
+    updateSessionAttributes(handlerInput, {
+      events: data.events
+    })
     const { speechText, repromptText, cardText, cardTitle, directive } = contentBuilder.getListEventResponse(data)
     responseBuilder.speak(speechText)
       .reprompt(repromptText)

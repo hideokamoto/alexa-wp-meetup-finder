@@ -10,7 +10,8 @@ import {
   updateSessionAttributes,
 } from 'ask-utils'
 import {
-  SessionEndedRequestHandler
+  SessionEndedRequestHandler,
+  DeleteDisabledUserHandler
 } from '@ask-utils/handlers'
 import RequestHandler = Alexa.RequestHandler
 import SearchByRegionIntentHandler from './handlers/SearchMeetupHandler'
@@ -19,6 +20,10 @@ import RequestDeviceAddressIntentHandler from './handlers/RequestDevicecAddressH
 import LaunchRequestHandler from './handlers/LaunchRequestHandler'
 import HelpIntentHandler from './handlers/HelpHandler'
 import SaveTheRegionIntentHandler from './handlers/SaveTheRegion'
+import {
+  EventDetailBySlotIntentHandler,
+  EventDetailUserEventIntentHandler
+} from './handlers/EventDetail'
 import {
   YesIntentHandler,
   YesSaveTheTownHandler,
@@ -68,6 +73,8 @@ export const handler = skillBuilder
     LaunchRequestHandler,
     SearchByRegionIntentHandler,
     SearchByDeviceAddressIntentHandler,
+    EventDetailBySlotIntentHandler,
+    EventDetailUserEventIntentHandler,
     RequestDeviceAddressIntentHandler,
     HelpIntentHandler,
     SaveTheRegionIntentHandler,
@@ -76,6 +83,7 @@ export const handler = skillBuilder
     YesIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
+    DeleteDisabledUserHandler as RequestHandler,
     {
       canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest'

@@ -16,7 +16,6 @@
     "ask-sdk-s3-persistence-adapter": "^2.5.2",
     "ask-utils": "^1.6.0",
     "axios": "^0.18.0",
-    "meetup-api": "^1.4.38",
     "moment-timezone": "^0.5.25"
   },
   "devDependencies": {

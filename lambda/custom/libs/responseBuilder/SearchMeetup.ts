@@ -28,7 +28,11 @@ export default class ContentBuilder {
         '保存しますか？'
       ]
     }
-    return ['他の地域も調べますか？終了する場合は、ストップと話しかけてください。']
+    return [
+      '各イベントの詳細については、「１番のイベント」のように聞いてください。',
+      '他の地域も調べますか？',
+      '終了する場合は、ストップと話しかけてください。'
+    ]
   }
   getRepromptText(): string {
     if (this.shouldAskSaveRegion) {
@@ -56,7 +60,7 @@ export default class ContentBuilder {
     const preText = region ? `${region}の`: ''
     const builder = this.builder.putSpeechParagraph(`${preText}近くで開催されるイベントが今の所ない様子です・・・。`)
       .putRepromptText('他の地域も調べますか？終了する場合は、ストップと話しかけてください。')
-    if (/[市区町村群]/.test(region)) builder.putSpeechParagraph('都道府県名で検索すると、イベントを見つけやすいかもしれません。')
+    if (region && /[市区町村群]/.test(region)) builder.putSpeechParagraph('都道府県名で検索すると、イベントを見つけやすいかもしれません。')
     if (region) builder.putCardTitle(`${region}のイベント`).putCardContent(`${region}で今後開催予定のWordPress Meetupは今の所ありません。`)
     return builder.putSpeechParagraph('他の地域を探しますか？').getResponse()
   }
@@ -73,7 +77,8 @@ export default class ContentBuilder {
     const directive = new List(metadataBuilder)
     data.events.forEach((event, i) => {
       const place = getLocation(event)
-      const date = moment(event.date).format('YYYY/MM/DD H時')
+      const date = moment(event.date).format(event.type === 'meetup' ? 'YYYY/MM/DD H時': 'YYYY/MM/DD')
+      this.builder.putSpeechParagraph(`${i + 1}件目、`)
       const p = [
         `${place}で`,
         `${date}に`,
@@ -85,13 +90,13 @@ export default class ContentBuilder {
       // Card Content
       this.builder.putCardContent(event.title)
       if (event.meetup) this.builder.putCardContent(event.meetup)
-      if (date) this.builder.putCardContent(date + ' ~ ')
+      if (date) this.builder.putCardContent(date + event.type === 'meetup' ? ' ~ ': '終日')
       if (event.meetup_url) this.builder.putCardContent('URL: ' + event.meetup_url)
       // APL Content
       const number = i + 1
       const Item = new ListItem(number, `event-${number}`)
       directive.putListItem(
-        Item.setPrimaryText(`${date} ~`)
+        Item.setPrimaryText(`${date}${event.type === 'meetup' ? ' ~ ': '終日'}`)
           .setSecondaryText(event.title)
           .getItem()
       )
