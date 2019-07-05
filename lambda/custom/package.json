@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@ask-utils/handlers": "^1.0.2",
+    "@sentry/node": "5.4.3",
     "ask-sdk-core": "^2.0.0",
     "ask-sdk-model": "^1.0.0",
     "ask-sdk-s3-persistence-adapter": "^2.5.2",
@@ -19,6 +20,7 @@
     "moment-timezone": "^0.5.25"
   },
   "devDependencies": {
+    "@sentry/typescript": "^5.3.0",
     "@types/moment-timezone": "^0.5.12",
     "@types/node": "^12.0.2",
     "tslib": "^1.9.3",

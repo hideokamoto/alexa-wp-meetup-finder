@@ -32,6 +32,8 @@ import {
 import {
   getRandomSpeechconTexts
 } from './libs/helpers'
+import * as Sentry from '@sentry/node'
+Sentry.init({ dsn: process.env.SENTRY_DNS as string })
 
 const CancelAndStopIntentHandler: RequestHandler = {
   canHandle(handlerInput) {
@@ -57,6 +59,13 @@ const ErrorHandler: Alexa.ErrorHandler = {
     return true;
   },
   handle(handlerInput, error) {
+    Sentry.captureEvent({
+      message: 'ErrorHandler invoked',
+      extra: {
+        request: handlerInput.requestEnvelope,
+        error
+      }
+    })
     console.log(`Error handled: ${error.message}`);
 
     return handlerInput.responseBuilder
@@ -97,6 +106,12 @@ export const handler = skillBuilder
   .addRequestInterceptors(
     {
       process(handlerInput) {
+        Sentry.configureScope(scope => {
+          scope.setTag("request_id", handlerInput.requestEnvelope.request.requestId);
+          scope.setUser({
+            id: handlerInput.requestEnvelope.context.System.user.userId
+          })
+        })
         if (!Alexa.isNewSession(handlerInput.requestEnvelope)) return
         const canCallAPI = !!(Alexa.getApiAccessToken(handlerInput.requestEnvelope))
         updateSessionAttributes(handlerInput, {

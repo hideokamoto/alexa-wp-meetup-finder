@@ -1,6 +1,8 @@
 {
+  "extends": "./node_modules/@sentry/typescript/tsconfig.json",
   // https://blog.yux3.net/entry/2017/02/05/000805
   "compilerOptions": {
+    
     "baseUrl": ".",
     "paths": { "*": ["types/*"] },
     /* Basic Options */
